@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brightness</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #808080;
+      color: white;
+      font-family: Arial, sans-serif;
+      }
+      .controller {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      }
+      input[type="range"] {
+      appearance: none;
+      width: 300px;
+      height: 8px;
+      background: #555;
+      border-radius: 5px;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #ff5722;
+      border-radius: 50%;
+      cursor: pointer;
+      }
+      .reset-btn {
+      padding: 10px 20px;
+      background: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      }
+  </style>
+</head>
+<body>
+  <div class="controller">
+    <h2>Screen Light Controller</h2>
+    <input id="bRange" type="range" min="0" max="100" value="50">
+    <p class="bLevel">Brightness: <span id="bValue">50%</span></p>
+    <button class="reset-btn" onclick="resetBrightness()">Reset</button>
+  </div>
+  <script>
+      const bRange = document.getElementById("bRange");
+      const bValue = document.getElementById("bValue");
+      bRange.addEventListener("input", () => {
+      const brightness = bRange.value;
+      document.body.style.background = `rgb(${brightness * 2.55}, ${brightness * 2.55}, ${brightness * 2.55})`;
+      bValue.textContent = `${brightness}%`;
+      });
+      function resetBrightness() {
+      bRange.value = 50;
+      document.body.style.background = `#808080`;
+      bValue.textContent = "50%";
+      }
+  </script>
+</body>
+</html>
